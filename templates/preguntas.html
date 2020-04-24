@@ -1,0 +1,180 @@
+{%extends 'laydashboard.html'%}
+
+{%block body%}
+<body>
+    <!--  NAVBAR-->
+    <nav class="navbar navbar-expand-md navbar-light">
+      <button class="navbar-toggler ml-auto mb-2 bg-light" type="button" data-toggle="collapse" data-target="#myNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="container-fluid">
+          <div class="row">
+            <!--sidebar-->
+            <div class="col-xl-2 col-lg-3 col-md-4 sidebar fixed-top">
+              <a href="#"
+                class="navbar-brand text-white d-block mx-auto py-3 mr-3 mb-4">OPEN BI</a>
+              <div class="bottom-border pb-3">
+                <img src="imagenes/imagen.jpg" width="50" class="rounded-circle mr-3">
+                <a href="#" class="text-white">HOLA {{session.username}}</a>
+              </div>
+              <ul class="navbar-nav flex-column mt-4">
+                <li class="nav-item"><a href="preguntas" class="nav-link text-white p-3 mb-2 current"><i
+                      class="fas fa-question-circle text-light fa-lg mr-3"></i>Preguntas</a></li>
+                <li class="nav-item"><a href="ventas" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                      class="fas fa-dollar-sign text-light fa-lg mr-3"></i>Ventas</a></li>
+                <li class="nav-item"><a href="envios" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                      class="fas fa-shipping-fast text-light fa-lg mr-3"></i>Envios</a></li>
+                <li class="nav-item"><a href="reclamos" class="nav-link text-white p-3 mb-2 sidebar-link"><i
+                      class="fas fa-exclamation-triangle text-light fa-lg mr-3"></i>Reclamos</a></li>
+  
+              </ul>
+            </div>
+            <!--end sidebar-->
+            <!--topnav-->
+            <div class="col-xl-10 col-lg-9 col-md-8 ml-auto fixed-top py-2 topnav">
+              <div class="row align-items-center">
+                <div class="col-md-4">
+                  <h4 class="text-light mb-0">Dashboard Preguntas</h4>
+                </div>              
+                <div class="col-md-8">
+                  <ul class="navbar-nav">
+                    <li class="nav-item ml-md-auto"><a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt text-danger fa-lg"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!--end topnav-->
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!--END NAVBAR-->
+    <!-- cards -->
+    <section>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+            <div class="row pt-md-5 mt-md-3 mb-5">
+              <div class="col-xl-3 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-question fa-3x text-warning"></i>
+                      <div class="text-right text-secondary">
+                        <h5>Precio Promedio de Publicaciones</h5>
+                        <h3>$ {{promedio.avg}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>Updated Now</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-stopwatch fa-3x text-success"></i>
+                      <div class="text-right text-secondary">
+                        <h5>Cantidad de Publicaciones</h5>
+                        <h3>{{publicaciones.cantidad}}</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>Updated Now</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-percent fa-3x text-info"></i>
+                      <div class="text-right text-secondary">
+                        <h5>Conversion</h5>
+                        <h3>15,000</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>Updated Now</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 p-2">
+                <div class="card card-common">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                      <i class="fas fa-chart-line fa-3x text-danger"></i>
+                      <div class="text-right text-secondary">
+                        <h5>Visitors</h5>
+                        <h3>45,000</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-secondary">
+                    <i class="fas fa-sync mr-3"></i>
+                    <span>Updated Now</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end of cards -->
+  <!-- tabla operadores -->
+  <section>
+    <div class="container-fluid">      
+      <div class="row">
+        <div class="col-xl-10 col-lg-9 col-md-8 ml-auto">
+          <p>
+            <a class="btn btn-dark" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Detalle por Operador
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample">
+          <table class="table table-hover table-sm table-bordered tabla1" id="#example">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Precio</th>
+                <th scope="col" class="text-center">Link</th>
+              </tr>
+            </thead>            
+            <tbody>
+              {% for producto in productos %}            
+              <tr>
+                <td>{{producto.Title}}</td>
+                <td>{{producto.Price}}</td>
+                <td><a href={{producto.Link}}><i class="fas fa-link"></i></a></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>          
+      </div>
+    </div>
+  </section>
+  <!-- fin tabla operadores -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+  </body>
+
+{%endblock%}
