@@ -153,6 +153,50 @@ def logout():
     return redirect(url_for('home'))
 
 
+@app.route('/tabla')
+def tabla():
+    ####cursor
+    cur=mysql.connection.cursor()
+    ###obtengo mail
+    result=cur.execute("SELECT  PreciosMeli.Index ,Title,Price,Link,Tipo from PreciosMeli ORDER BY RAND()  LIMIT 0,100")
+    productos=cur.fetchall()    
+    prom=cur.execute("SELECT  ROUND(AVG(Price),2) as avg from PreciosMeli WHERE Tipo='Proyectores'")  
+    promedio=cur.fetchone()  
+    total=cur.execute("SELECT  COUNT(*) as cantidad from PreciosMeli WHERE Tipo='Proyectores'")
+    publicaciones=cur.fetchone()        
+    if result>0:
+        return render_template('tabla.html',
+                                    productos=productos,
+                                    promedio=promedio,
+                                    publicaciones=publicaciones)
+    else:
+        return render_template('tabla.html')
+    cur.close()
+
+@app.route('/tabla2')
+def tabla2():
+    ####cursor
+    cur=mysql.connection.cursor()
+    ###obtengo mail
+    result=cur.execute("SELECT f.MarcaLimpia,v.MODELO ,f.Cantidad from FactImpo AS f JOIN DimVP AS v ON f.Sku=v.Sku")
+    productos=cur.fetchall()    
+    prom=cur.execute("SELECT  ROUND(AVG(Price),2) as avg from PreciosMeli WHERE Tipo='Proyectores'")  
+    promedio=cur.fetchone()  
+    total=cur.execute("SELECT  COUNT(*) as cantidad from PreciosMeli WHERE Tipo='Proyectores'")
+    publicaciones=cur.fetchone()        
+    if result>0:
+        return render_template('tabla2.html',
+                                    productos=productos,
+                                    promedio=promedio,
+                                    publicaciones=publicaciones)
+    else:
+        return render_template('tabla2.html')
+    cur.close()
+
+
+
+
+
 
 
 labels = [
